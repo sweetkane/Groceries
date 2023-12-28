@@ -15,6 +15,7 @@ struct GroceriesApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .navigationTitle("Groceries")
         }
     }
 }

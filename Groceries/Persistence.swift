@@ -13,11 +13,12 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
+        let groceries = ["Hash Browns", "Milk", "Chicken", "Juice", "Cat Food"]
+        for i in 0..<5 {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
-            newItem.name = "Hash Browns"
-            newItem.isWeekly = true
+            newItem.name = groceries[i]
+            newItem.isWeekly = false
         }
         do {
             try viewContext.save()
