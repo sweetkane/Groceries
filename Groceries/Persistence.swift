@@ -16,6 +16,8 @@ struct PersistenceController {
         for _ in 0..<10 {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
+            newItem.name = "Hash Browns"
+            newItem.isWeekly = true
         }
         do {
             try viewContext.save()
