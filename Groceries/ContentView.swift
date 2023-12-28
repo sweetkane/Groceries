@@ -21,32 +21,37 @@ struct ContentView: View {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        ItemView(item: item)
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(item.name!)
+                        Text(item.timestamp!, formatter: itemFormatter).foregroundColor(Color.gray)
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
+            .navigationTitle("Groceries")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    NavigationLink {
+                        AddItemView()
+                    } label: {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
             Text("Select an item")
         }
+
     }
 
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
-
+            
             do {
                 try viewContext.save()
             } catch {
@@ -77,7 +82,7 @@ struct ContentView: View {
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
-    formatter.timeStyle = .medium
+    formatter.timeStyle = .none
     return formatter
 }()
 
