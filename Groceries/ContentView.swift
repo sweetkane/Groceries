@@ -39,7 +39,9 @@ struct ContentView: View {
                         HStack {
                             Text(item.name!)
                             Spacer()
-                            Text(item.timestamp!, formatter: itemFormatter).foregroundColor(Color.gray)
+                            Text(item.timestamp!, formatter: itemFormatter)
+                                .foregroundColor(Color.gray)
+                                .padding()
                             Button(
                                 action: {
                                         toggleIsWeekly(item: item)
@@ -58,14 +60,14 @@ struct ContentView: View {
                     .onDelete(perform: deleteItems)
 
                 }
-                .navigationTitle("Groceries")
+                //.navigationTitle("Groceries")
                 Section {
                     VStack {
                         Button(action: { wentShopping() } ) {
-                            Text("Went Shopping!")
+                            Text("Went Shopping")
                                 .font(.title2)
                         }
-                        .frame(width: 250)
+                        .frame(width: 160)
                     }
 
                 }
